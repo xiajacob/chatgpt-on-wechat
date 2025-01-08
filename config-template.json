@@ -1,18 +1,15 @@
 {
-  "channel_type": "wx",
-  "model": "",
-  "open_ai_api_key": "YOUR API KEY",
+  "channel_type": "feishu",
+  "model": "gpt-4o",
+  "open_ai_api_key": "sk-TGHDf84NYUcZftgN2a81A1A3F0E145A69413A221Fb421d59",
+  "open_ai_api_base": "https://api.openai-prc.com/v1",
   "claude_api_key": "YOUR API KEY",
   "text_to_image": "dall-e-2",
   "voice_to_text": "openai",
   "text_to_voice": "openai",
   "proxy": "",
   "hot_reload": false,
-  "single_chat_prefix": [
-    "bot",
-    "@bot"
-  ],
-  "single_chat_reply_prefix": "[bot] ",
+  "single_chat_reply_prefix": "",
   "group_chat_prefix": [
     "@bot"
   ],
@@ -23,7 +20,12 @@
   "image_create_prefix": [
     "画"
   ],
-  "speech_recognition": true,
+  "feishu_port": 9891,
+  "feishu_app_id": "cli_a7f10a8b3a38d00e",
+  "feishu_app_secret": "VLO6oZRJdtvI9F7YObwc0cMVT5v3oUXF",
+  "feishu_token": "a9CNVgyfsz46b9SfLEen7doBxsKu0Mjb",
+  "feishu_bot_name": "对话机器人",
+  "speech_recognition": false,
   "group_speech_recognition": false,
   "voice_reply_voice": false,
   "conversation_max_tokens": 2500,
@@ -35,3 +37,4 @@
   "linkai_api_key": "",
   "linkai_app_code": ""
 }
+
