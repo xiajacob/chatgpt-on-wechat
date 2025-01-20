@@ -23,6 +23,13 @@ RUN apt-get update \
     && pip install --no-cache -r requirements-optional.txt \
     && pip install azure-cognitiveservices-speech
 
+ENV USER_NAME=noroot
+
+RUN mkdir -p /home/${USER_NAME} \
+    && groupadd -r ${USER_NAME} \
+    && useradd -r -g ${USER_NAME} -s /bin/bash -d /home/${USER_NAME} ${USER_NAME} \
+    && chown -R ${USER_NAME}:${USER_NAME} /home/${USER_NAME} /usr/local/lib
+
 ADD . ${BUILD_PREFIX}
 RUN cd ${BUILD_PREFIX} \
     && cp config-template.json config.json
@@ -32,12 +39,9 @@ WORKDIR ${BUILD_PREFIX}
 ADD docker/entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh \
-    && mkdir -p /home/noroot \
     && mkdir -p ${BUILD_PREFIX}/logs \
-    && groupadd -r noroot \
-    && useradd -r -g noroot -s /bin/bash -d /home/noroot noroot \
-    && chown -R noroot:noroot /home/noroot ${BUILD_PREFIX} /usr/local/lib ${BUILD_PREFIX}/logs
+    && chown -R ${USER_NAME}:${USER_NAME} ${BUILD_PREFIX} ${BUILD_PREFIX}/logs
 
-USER noroot
+USER ${USER_NAME}
 
 ENTRYPOINT ["/entrypoint.sh"]

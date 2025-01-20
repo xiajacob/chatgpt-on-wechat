@@ -1,5 +1,5 @@
 {
-  "channel_type": "feishu",
+  "channel_type": "wechatmp",
   "model": "gpt-4o",
   "open_ai_api_key": "sk-TGHDf84NYUcZftgN2a81A1A3F0E145A69413A221Fb421d59",
   "open_ai_api_base": "https://api.openai-prc.com/v1",
@@ -10,21 +10,14 @@
   "proxy": "",
   "hot_reload": false,
   "single_chat_reply_prefix": "",
-  "group_chat_prefix": [
-    "@bot"
-  ],
-  "group_name_white_list": [
-    "ChatGPT测试群",
-    "ChatGPT测试群2"
-  ],
   "image_create_prefix": [
     "画"
   ],
-  "feishu_port": 9891,
-  "feishu_app_id": "cli_a7f10a8b3a38d00e",
-  "feishu_app_secret": "VLO6oZRJdtvI9F7YObwc0cMVT5v3oUXF",
-  "feishu_token": "a9CNVgyfsz46b9SfLEen7doBxsKu0Mjb",
-  "feishu_bot_name": "对话机器人",
+  "wechatmp_token": "vMGnTt2eZYHUe7j8yhWvu3zfNw7vQjuz",
+  "wechatmp_port": 8080,
+  "wechatmp_app_id": "wx02ba12531c932adf",
+  "wechatmp_app_secret": "0c0a273ea4a5913e74b9113fa4cb3c49",
+  "wechatmp_aes_key": "ukptIOQhXtP6nly06nEPbcDXB8ZUSnKu3PgOBLtabxc",
   "speech_recognition": false,
   "group_speech_recognition": false,
   "voice_reply_voice": false,
@@ -33,8 +26,9 @@
   "character_desc": "你是基于大语言模型的AI智能助手，旨在回答并解决人们的任何问题，并且可以使用多种语言与人交流。",
   "temperature": 0.7,
   "subscribe_msg": "感谢您的关注！\n这里是AI智能助手，可以自由对话。\n支持语音对话。\n支持图片输入。\n支持图片输出，画字开头的消息将按要求创作图片。\n支持tool、角色扮演和文字冒险等丰富的插件。\n输入{trigger_prefix}#help 查看详细指令。",
+  "promotion_msg": "限时折扣199元",
+  "clear_memory_commands": ["重置对话","清除记忆"],
   "use_linkai": false,
-  "linkai_api_key": "",
-  "linkai_app_code": ""
+  "database_url": "mysql+pymysql://cow:WyXxuXaKkdYzRT73Df6Mrv6FhAHRwdus@localhost/chatgpt_on_wechat"
 }
 

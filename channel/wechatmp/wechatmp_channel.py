@@ -55,7 +55,7 @@ class WechatMPChannel(ChatChannel):
             # The permanent media need to be deleted to avoid media number limit
             self.delete_media_loop = asyncio.new_event_loop()
             t = threading.Thread(target=self.start_loop, args=(self.delete_media_loop,))
-            t.setDaemon(True)
+            t.daemon = True
             t.start()
 
     def startup(self):

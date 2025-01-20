@@ -328,6 +328,11 @@ def subscribe_msg():
     msg = conf().get("subscribe_msg", "")
     return msg.format(trigger_prefix=trigger_prefix)
 
+def promotion_msg():
+    trigger_prefix = conf().get("single_chat_prefix", [""])[0]
+    msg = conf().get("promotion_msg", "")
+    return msg.format(trigger_prefix=trigger_prefix)
+
 
 # global plugin config
 plugin_config = {}

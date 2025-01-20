@@ -10,8 +10,11 @@ from channel.wechatmp.common import *
 from channel.wechatmp.wechatmp_channel import WechatMPChannel
 from channel.wechatmp.wechatmp_message import WeChatMPMessage
 from common.log import logger
-from config import conf, subscribe_msg
+from config import conf, subscribe_msg, promotion_msg
+from auth.auth_handler import AuthHandler
 
+# Initialize AuthHandler
+auth_handler = AuthHandler()
 
 # This class is instantiated once per query
 class Query:
@@ -36,6 +39,14 @@ class Query:
                 logger.debug("[wechatmp] Receive post data:\n" + message.decode("utf-8"))
             msg = parse_message(message)
             if msg.type in ["text", "voice", "image"]:
+                if not auth_handler.has_conversation_permission(msg.source):
+                    reply_text = promotion_msg()
+                    if reply_text:
+                        replyPost = create_reply(reply_text, msg)
+                        return encrypt_func(replyPost.render())
+                    else:
+                        return "success"
+                
                 wechatmp_msg = WeChatMPMessage(msg, client=channel.client)
                 from_user = wechatmp_msg.from_user_id
                 content = wechatmp_msg.content
@@ -61,6 +72,9 @@ class Query:
             elif msg.type == "event":
                 logger.info("[wechatmp] Event {} from {}".format(msg.event, msg.source))
                 if msg.event in ["subscribe", "subscribe_scan"]:
+                    # 当用户关注时，调用add_user方法，将用户信息存入数据库
+                    auth_handler.add_user(open_id=msg.source)
+                    
                     reply_text = subscribe_msg()
                     if reply_text:
                         replyPost = create_reply(reply_text, msg)

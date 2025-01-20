@@ -61,7 +61,7 @@ class ChatGPTBot(Bot, OpenAIImage):
             clear_memory_commands = conf().get("clear_memory_commands", ["#清除记忆"])
             if query in clear_memory_commands:
                 self.sessions.clear_session(session_id)
-                reply = Reply(ReplyType.INFO, "记忆已清除")
+                reply = Reply(ReplyType.TEXT, "记忆已清除")
             elif query == "#清除所有":
                 self.sessions.clear_all_session()
                 reply = Reply(ReplyType.INFO, "所有人记忆已清除")
